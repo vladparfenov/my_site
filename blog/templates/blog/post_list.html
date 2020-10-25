@@ -3,13 +3,13 @@
         <title>Django My_site</title>
     </head>
 
-    <h1><a href="/">Django Girls Blog</a></h1>
-
-
-{% for post in posts %}
-    <div>
-        <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-        <p>published: {{ post.published_date }}</p>
-    </div>
-{% endfor %}
+    <h1><a href="/">Django my Blog</a></h1>
+    <h1>
+        {% for post in posts %}
+            <div>
+                <h1><a href="">{{ post.title }}</a></h1>
+             <p>{{ post.text|linebreaksbr }}</p>
+                <p>published: {{ post.published_date }}</p>
+            </div>
+        {% endfor %}
+     </h1>
