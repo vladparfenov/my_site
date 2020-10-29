@@ -6,12 +6,12 @@
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     color: #ffffff;
-    font-size: 36pt;
+    font-size:50pt; # размер фона шапки
     text-decoration: none;
 }
 
 .content {
-    margin-left: 40px;
+    margin-left: 450px; # расстояние от левой части э
 }
 
 h1, h2, h3, h4 {
@@ -31,16 +31,24 @@ h1, h2, h3, h4 {
 }
 
 .top-menu, .top-menu:hover, .top-menu:visited {
-    color: #ffffff;
+    color: ##2F4F4F;
     float: right;
-    font-size: 26pt;
-    margin-right: 20px;
+    font-size: 30pt;
+    margin-right: 40px;
 }
 
 .post {
-    margin-bottom: 70px;
+    margin-bottom: 50px;
 }
 
 .post h1 a, .post h1 a:visited {
-    color: #000000;
+    color: #9ACD32;
+}
+
+.sidebar-nav {
+    border: 40px solid #000000;
+    box-sizing: border-bpx;
+    border-radius: 40 px;
+    background-color: red;
+    padding: 70px 150px;
 }
