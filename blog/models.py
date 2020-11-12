@@ -1,18 +1,38 @@
-from django.conf import settings
 from django.db import models
+from django.conf import settings
 from django.utils import timezone
+#User = settings.AUTH_USER_MODEL()
 
 
-class Post(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
-    text = models.TextField()
+
+class Documents(models.Model):
+    docfile = models.ImageField(upload_to='documents/%Y/%m/%d')
+    text = models.TextField(null=True,blank=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
     created_date = models.DateTimeField(default=timezone.now)
-    published_date = models.DateTimeField(blank=True, null=True)
 
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
+    class Meta:
+        ordering = ['-created_date']
+
+
+class Comments(models.Model):
+    """Ксласс комментариев к новостям
+    """
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        verbose_name="Пользователь",
+        on_delete=models.CASCADE)
+    new = models.ForeignKey(
+         Documents,
+         verbose_name="Новость",
+         on_delete=models.CASCADE)
+    text = models.TextField("Комментарий")
+    created = models.DateTimeField("Дата добавления", auto_now_add=True, null=True)
+    moderation = models.BooleanField("Модерация", default=False)
+
+    class Meta:
+        verbose_name = "Комментарий"
+        verbose_name_plural = "Комментарии"
 
     def __str__(self):
-        return self.title
+        return "{}".format(self.user)

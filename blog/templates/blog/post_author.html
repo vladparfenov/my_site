@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for document in documents %}
+    <h3>{{ document.author }}</h3>
+    <p>{{ document.text }}</p>
+    <p><img src="{{ document.docfile.url }}" alt=""></p>
+    <hr>
+{% endfor %}
+{% endblock %}

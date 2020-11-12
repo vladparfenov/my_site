@@ -1,16 +1,24 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    {% for post in posts %}
-        <option>{{ post.name }}</option>
-    {% endfor %}
 
-    {% for post in posts %}
-        <div class="post">
-            <h3><a href="{% url 'post_detail' pk=post.pk %}" target='-blank'>{{ post.title }} </a></h3>
-            <p>{{ post.text|linebreaksbr }}</p>
-            <p>{{ post.published_date }}</p>
-            <p><a> {{ post.author }}</a></p>
-        </div>
-    {% endfor %}
+
+        {% if documents %}
+            All documents in the database:
+            <ul>
+                <div class="col-md-8"></div>
+                {% for document in documents %}
+
+                <li><a href="{% url 'post_detail' pk=document.id %}"><img src="{{ document.docfile.url }}" width="400" height="400" alt=""></a></li>
+                 <p>{{ document.text }}</p>
+                <p><a href="{% url 'post_author'  %}">{{ document.author }}</a></p>
+                 <p>{{ document.created_date }}</p>
+                {% endfor %}
+                </div>
+            </ul>
+        {% else %}
+            <p>No documents.</p>
+        {% endif %}
+
+
 {% endblock %}
